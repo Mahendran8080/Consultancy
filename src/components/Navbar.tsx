@@ -36,12 +36,16 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <Roof size={32} className="text-primary-600" />
-              <span className="ml-2 text-xl font-display font-bold text-gray-900">
-                Amman  Roofing
-              </span>
-            </Link>
+            <Link to="/" className="flex items-center space-x-2">
+  <img 
+    src="/lo.png" 
+    alt="Amman Roofing Logo" 
+    className="h-8 w-8 object-contain"
+  />
+  <span className="text-xl font-display font-bold text-gray-900">
+    Amman Roofing
+  </span>
+</Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">

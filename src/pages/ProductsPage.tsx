@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import { Book as Roof, ShieldCheck, BarChart, ArrowRight } from 'lucide-react';
 import asphaltShingles from '../images/asphalt-shingles.png';
 import metalRoofing from '../images/MetalRoof.png';
@@ -9,16 +8,11 @@ import syntheticSlate from '../images/Synthetic.png';
 import solarTiles from '../images/Solar.png';
 import cedarShake from '../images/Cedar.png';
 
-
-
-
-
 interface Product {
   _id: string;
   name: string;
   category: string;
   description: string;
-  price: number;
   imageUrl: string;
   features: string[];
 }
@@ -39,7 +33,6 @@ const ProductsPage: React.FC = () => {
       name: 'Asphalt Shingles',
       category: 'shingles',
       description: 'Durable and cost-effective roofing solution for residential homes.',
-      price: 79.99,
       imageUrl: asphaltShingles,
       features: [
         'Class A fire rating',
@@ -54,7 +47,6 @@ const ProductsPage: React.FC = () => {
       name: 'Metal Roofing Panels',
       category: 'metal',
       description: 'Long-lasting, energy-efficient solution for modern homes and buildings.',
-      price: 125.99,
       imageUrl: metalRoofing,
       features: [
         '50+ year lifespan',
@@ -69,7 +61,6 @@ const ProductsPage: React.FC = () => {
       name: 'Clay Roof Tiles',
       category: 'tiles',
       description: 'Classic, elegant roofing option with exceptional longevity and curb appeal.',
-      price: 189.99,
       imageUrl: clayTiles,
       features: [
         '100+ year lifespan',
@@ -84,7 +75,6 @@ const ProductsPage: React.FC = () => {
       name: 'Synthetic Slate',
       category: 'slate',
       description: 'Modern alternative to natural slate with reduced weight and cost.',
-      price: 159.99,
       imageUrl: syntheticSlate,
       features: [
         'Authentic slate appearance',
@@ -99,7 +89,6 @@ const ProductsPage: React.FC = () => {
       name: 'Solar Roofing Tiles',
       category: 'solar',
       description: 'Innovative roofing solution that generates clean energy for your home.',
-      price: 299.99,
       imageUrl: solarTiles,
       features: [
         'Energy production capability',
@@ -114,7 +103,6 @@ const ProductsPage: React.FC = () => {
       name: 'Cedar Shake Shingles',
       category: 'shingles',
       description: 'Natural wood roofing with distinctive appearance for premium homes.',
-      price: 179.99,
       imageUrl: cedarShake,
       features: [
         'Natural insulation properties',
@@ -125,17 +113,11 @@ const ProductsPage: React.FC = () => {
       ]
     }
   ];
-  
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        // In a real application, you would fetch from your API
-        // const response = await axios.get('http://localhost:5000/api/products');
-        // setProducts(response.data);
-        
-        // For demo purposes, use placeholder data
         await new Promise(resolve => setTimeout(resolve, 1000));
         setProducts(placeholderProducts);
         setLoading(false);
@@ -145,7 +127,7 @@ const ProductsPage: React.FC = () => {
         setLoading(false);
       }
     };
-    
+
     fetchProducts();
   }, []);
 
@@ -157,9 +139,9 @@ const ProductsPage: React.FC = () => {
     { id: 'slate', name: 'Slate' },
     { id: 'solar', name: 'Solar' }
   ];
-  
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
+
+  const filteredProducts = selectedCategory === 'all'
+    ? products
     : products.filter(product => product.category === selectedCategory);
 
   return (
@@ -167,7 +149,7 @@ const ProductsPage: React.FC = () => {
       {/* Hero Section */}
       <section className="bg-primary-700 py-20">
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-5xl font-display font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,7 +157,7 @@ const ProductsPage: React.FC = () => {
           >
             Our Roofing Products
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-primary-100 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -217,7 +199,7 @@ const ProductsPage: React.FC = () => {
           {error && (
             <div className="text-center py-12">
               <p className="text-red-600">{error}</p>
-              <button 
+              <button
                 onClick={() => window.location.reload()}
                 className="mt-4 px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
               >
@@ -249,17 +231,17 @@ const ProductsPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <BenefitCard 
+            <BenefitCard
               icon={<ShieldCheck size={48} />}
               title="Premium Quality"
               description="All our roofing products are sourced from top manufacturers and undergo rigorous quality testing."
             />
-            <BenefitCard 
+            <BenefitCard
               icon={<Roof size={48} />}
               title="Expert Installation"
               description="Our certified professionals ensure proper installation for maximum performance and longevity."
             />
-            <BenefitCard 
+            <BenefitCard
               icon={<BarChart size={48} />}
               title="Value for Money"
               description="Competitive pricing with outstanding performance, ensuring the best return on your investment."
@@ -278,8 +260,8 @@ const ProductsPage: React.FC = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Contact our team today for expert advice on choosing the right roofing products for your project.
             </p>
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               className="inline-flex items-center px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg shadow-md transition-colors"
             >
               Contact Us <ArrowRight size={18} className="ml-2" />
@@ -291,52 +273,33 @@ const ProductsPage: React.FC = () => {
   );
 };
 
+// ProductCard component
 interface ProductCardProps {
   product: Product;
   index: number;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => (
-  <motion.div 
-    className="bg-white rounded-lg shadow-soft overflow-hidden transition-transform hover:translate-y-[-8px]"
+  <motion.div
+    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-transform hover:-translate-y-2"
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
   >
-    <div className="h-56 overflow-hidden">
-      <img 
-        src={product.imageUrl} 
-        alt={product.name} 
-        className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-      />
-    </div>
+    <img src={product.imageUrl} alt={product.name} className="w-full h-56 object-cover" />
     <div className="p-6">
-      <h3 className="text-xl font-bold text-gray-900 mb-2">{product.name}</h3>
+      <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
       <p className="text-gray-600 mb-4">{product.description}</p>
-      <div className="mb-4">
-        <h4 className="font-medium text-gray-800 mb-2">Key Features:</h4>
-        <ul className="space-y-1">
-          {product.features.slice(0, 3).map((feature, i) => (
-            <li key={i} className="flex items-start">
-              <span className="text-primary-600 mr-2">✓</span>
-              <span className="text-gray-600 text-sm">{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex items-center justify-between">
-        <span className="text-2xl font-bold text-primary-600">₹{product.price.toFixed(2)}</span>
-        <a 
-          href="/contact" 
-          className="inline-flex items-center px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-700 font-medium rounded-lg transition-colors"
-        >
-          Request Quote
-        </a>
-      </div>
+      <ul className="text-sm text-gray-500 list-disc pl-5 space-y-1">
+        {product.features.map((feature, idx) => (
+          <li key={idx}>{feature}</li>
+        ))}
+      </ul>
     </div>
   </motion.div>
 );
 
+// BenefitCard component
 interface BenefitCardProps {
   icon: React.ReactNode;
   title: string;
@@ -344,17 +307,11 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description }) => (
-  <motion.div 
-    className="bg-primary-50 rounded-lg p-8 text-center"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-  >
-    <div className="text-primary-600 mb-4 flex justify-center">{icon}</div>
-    <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
+  <div className="bg-gray-100 p-6 rounded-lg text-center shadow-sm">
+    <div className="text-primary-600 mb-4">{icon}</div>
+    <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>
-  </motion.div>
+  </div>
 );
 
 export default ProductsPage;

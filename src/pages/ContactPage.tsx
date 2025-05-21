@@ -5,7 +5,7 @@ import { Send, CheckCircle, AlertCircle, Phone, Mail, MapPin, Clock } from 'luci
 
 const ContactPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Contact Us - Amman  Roofing';
+    document.title = 'Contact Us - Amman Roofing';
   }, []);
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -15,6 +15,8 @@ const ContactPage: React.FC = () => {
     phone: '',
     subject: '',
     message: '',
+    material: '',
+    estimatedArea: '',
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,16 +32,7 @@ const ContactPage: React.FC = () => {
     
     try {
       setFormStatus('submitting');
-      console.log('Form data:', {
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message
-      });
       
-      // This is a placeholder for EmailJS setup
-      // In a real application, you would replace these with your actual EmailJS credentials
       await emailjs.sendForm(
         'service_706wq3d',
         'template_tfoi8m8',
@@ -57,6 +50,8 @@ const ContactPage: React.FC = () => {
         phone: '',
         subject: '',
         message: '',
+        material: '',
+        estimatedArea: '',
       });
       
       // Reset form status after 5 seconds
@@ -190,6 +185,36 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
                 
+                {/* Conditional Fields for Quote Requests */}
+                {formData.subject === 'Quote Request' && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                      <label htmlFor="material" className="block text-sm font-medium text-gray-700 mb-1">Material</label>
+                      <input
+                        type="text"
+                        id="material"
+                        name="material"
+                        value={formData.material}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="e.g. Asphalt Shingles"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="estimatedArea" className="block text-sm font-medium text-gray-700 mb-1">Estimated Area (sq.ft.)</label>
+                      <input
+                        type="text"
+                        id="estimatedArea"
+                        name="estimatedArea"
+                        value={formData.estimatedArea}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="e.g. 1200"
+                      />
+                    </div>
+                  </div>
+                )}
+                
                 <div className="mb-6">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
                   <textarea
@@ -278,10 +303,6 @@ const ContactPage: React.FC = () => {
               <div className="bg-primary-50 rounded-lg p-8">
                 <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">Why Choose Us?</h2>
                 <ul className="space-y-3">
-                  {/* <li className="flex items-start">
-                    <span className="text-primary-600 mr-3">✓</span>
-                    <span className="text-gray-700">25+ years of experience in the roofing industry</span>
-                  </li> */}
                   <li className="flex items-start">
                     <span className="text-primary-600 mr-3">✓</span>
                     <span className="text-gray-700">Fully licensed, bonded, and insured for your protection</span>
@@ -306,23 +327,21 @@ const ContactPage: React.FC = () => {
       </section>
       
       <section className="py-16 bg-gray-50">
-  <div className="container mx-auto px-4">
-    <h2 className="text-2xl font-display font-bold text-gray-900 mb-8 text-center">Find Us</h2>
-    <div className="h-96 rounded-lg overflow-hidden">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.9935395737107!2d77.99925617489443!3d11.552320488647554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babe3f0f6addac5%3A0xf4fc41cd42dbd5b4!2sSRI%20AMMAN%20ROOFING!5e0!3m2!1sen!2sin!4v1746420512518!5m2!1sen!2sin"
-    width="100%"
-    height="100%"
-    style={{ border: 0 }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
-
-  </div>
-</section>
-
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-display font-bold text-gray-900 mb-8 text-center">Find Us</h2>
+          <div className="h-96 rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3908.9935395737107!2d77.99925617489443!3d11.552320488647554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babe3f0f6addac5%3A0xf4fc41cd42dbd5b4!2sSRI%20AMMAN%20ROOFING!5e0!3m2!1sen!2sin!4v1746420512518!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

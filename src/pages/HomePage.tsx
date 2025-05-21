@@ -121,7 +121,7 @@ const HomePage: React.FC = () => {
                   alt="Professional roofers working" 
                   className="rounded-lg shadow-xl w-full h-auto"
                 />
-                <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-lg shadow-lg">
+                {/* <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-lg shadow-lg">
                   <div className="flex items-start">
                     <div className="text-primary-600 mr-4">
                       <svg className="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
@@ -133,7 +133,7 @@ const HomePage: React.FC = () => {
                       <p className="text-gray-600">Based on 500+ reviews</p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           </div>
